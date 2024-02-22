@@ -8,8 +8,14 @@ from sentence_transformers import SentenceTransformer
 import keras
 model = keras.models.load_model('model.h5')
 
-ip = {'i want to die', 'this world is so fucking shit', 'i wish i was dead'}
+#ip = {'i want to die this world is so fucking shit', 'i wish i was d'}
+with open('input.txt', 'r') as f:
+    # Read the content and remove the curly braces and quotes
+    content = f.read().strip('{}').split(',')
+    # Remove the single quotes around each string
+    ip = {s.strip("'") for s in content}
 
+    
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import re
